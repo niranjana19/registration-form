@@ -3,36 +3,58 @@ import './App.css';
 
 function App() {
   const initialValues = {
-    username: " ",
-    email: " ",
-    mobile: " ",
-    country: " ",
-    city: " ",
-    state: " ",
-    message: " ",
+    username:" ",
+    email:" ",
+    mobile:" ",
+    country:" ",
+    city:" ",
+    state:" ",
+    message:" ",
   };
   
   const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit]= useState(false);
+
+
 const handleChange = (e) => {
   console.log(e.target);
   const {name, value} = e.target;
-  setFormValues ({...formValues, name:value
+  setFormValues ({...formValues, [name]:value
   });
-  console.log(formValues);
+ 
 
 }
 
+const handleSubmit = (e) => {
+  e.preventDefault();
+  setFormErrors(validate(formValues));
+  setIsSubmit(true);
+};
 
 
+const validate = (values) => {
+  const errors = {}
+  const regex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+  if (!values.username) {
+    errors.username = "username is required!";
 
+  }
 
+  if(!values.email){
+errors.username = "Email is required!";
+  }
+
+  return errors;
+}
 
 
 
 
   return (
     <div className="container">
-      <form>
+      <pre>{JSON.stringify(formValues,undefined, 2)}</pre>
+      <form onSubmit = {handleSubmit} >
         <h1>Registration Form</h1>
         <div className="ui divider"></div>
         <div className="ui form">
