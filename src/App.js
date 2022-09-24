@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import './App.css';
 
 function App() {
@@ -32,18 +32,34 @@ const handleSubmit = (e) => {
   setIsSubmit(true);
 };
 
+useEffect(() => {
+  console.log(formErrors);
+  if(Object.keys(formErrors).length === 0 && isSubmit){
+    console.log(formValues);
+  }
+},[formErrors]);
+
+
+
+
+
+
+
+
 
 const validate = (values) => {
   const errors = {}
-  const regex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+  const regex =/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i; 
   if (!values.username) {
-    errors.username = "username is required!";
+    errors.username = "Username is required!";
 
   }
 
   if(!values.email){
 errors.username = "Email is required!";
   }
+
+ 
 
   return errors;
 }
@@ -64,8 +80,9 @@ errors.username = "Email is required!";
             type="text" 
             name="username" 
             placeholder="Username" 
-            value = {formValues.username} />
+            value = {formValues.username} 
             onChange = {handleChange}
+            />
             
           </div>
           <div className="field">
@@ -74,8 +91,9 @@ errors.username = "Email is required!";
             type="email" 
             name="email" 
             placeholder="Email" 
-            value = {formValues.email} />
+            value = {formValues.email} 
             onChange = {handleChange}
+            />
 
           </div>
           <div className="field">
@@ -84,8 +102,9 @@ errors.username = "Email is required!";
             type="text" 
             name="mobile" 
             placeholder="Mobile" 
-            value = {formValues.mobile} />
+            value = {formValues.mobile} 
             onChange = {handleChange}
+            />
 
 
           </div>
@@ -95,8 +114,9 @@ errors.username = "Email is required!";
             type="text" 
             name="country" 
             placeholder="Country" 
-            value = {formValues.country} />
+            value = {formValues.country} 
             onChange = {handleChange}
+            />
 
 
           </div>
@@ -106,8 +126,9 @@ errors.username = "Email is required!";
             type="text" 
             name="city" 
             placeholder="City" 
-            value = {formValues.city} />
+            value = {formValues.city} 
             onChange = {handleChange}
+            />
 
           </div>
           <div className="field">
@@ -116,8 +137,9 @@ errors.username = "Email is required!";
             type="text" 
             name="state" 
             placeholder="State" 
-            value = {formValues.state} />
+            value = {formValues.state} 
             onChange = {handleChange}
+            />
 
           </div>
           <div className="field">
@@ -126,10 +148,12 @@ errors.username = "Email is required!";
             type="text" 
             name="message" 
             placeholder="Message" 
-            value = {formValues.message} />
+            value = {formValues.message} 
             onChange = {handleChange}
+            />
 
           </div>
+          <p>{formErrors.password}</p>
           <button 
           type="button" 
           class="btn btn-primary">Submit</button>
