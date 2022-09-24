@@ -10,9 +10,17 @@ function App() {
     city: " ",
     state: " ",
     message: " ",
-  }
+  };
+  
   const [formValues, setFormValues] = useState(initialValues);
+const handleChange = (e) => {
+  console.log(e.target);
+  const {name, value} = e.target;
+  setFormValues ({...formValues, name:value
+  });
+  console.log(formValues);
 
+}
 
 
 
@@ -30,10 +38,12 @@ function App() {
         <div className="ui form">
           <div className="field">
             <label>Username</label>
-            <input type="text" 
+            <input 
+            type="text" 
             name="username" 
             placeholder="Username" 
             value = {formValues.username} />
+            onChange = {handleChange}
             
           </div>
           <div className="field">
@@ -43,6 +53,7 @@ function App() {
             name="email" 
             placeholder="Email" 
             value = {formValues.email} />
+            onChange = {handleChange}
 
           </div>
           <div className="field">
@@ -52,6 +63,8 @@ function App() {
             name="mobile" 
             placeholder="Mobile" 
             value = {formValues.mobile} />
+            onChange = {handleChange}
+
 
           </div>
           <div className="field">
@@ -61,6 +74,8 @@ function App() {
             name="country" 
             placeholder="Country" 
             value = {formValues.country} />
+            onChange = {handleChange}
+
 
           </div>
           <div className="field">
@@ -70,6 +85,7 @@ function App() {
             name="city" 
             placeholder="City" 
             value = {formValues.city} />
+            onChange = {handleChange}
 
           </div>
           <div className="field">
@@ -79,6 +95,7 @@ function App() {
             name="state" 
             placeholder="State" 
             value = {formValues.state} />
+            onChange = {handleChange}
 
           </div>
           <div className="field">
@@ -88,6 +105,7 @@ function App() {
             name="message" 
             placeholder="Message" 
             value = {formValues.message} />
+            onChange = {handleChange}
 
           </div>
           <button 
